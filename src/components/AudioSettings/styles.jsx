@@ -31,7 +31,7 @@ export const Power = styled.div`
    width: 80%;
    padding-bottom: 5px;
    border-radius: 10px;
-   box-shadow: 2px 2px 13px #454444cf;
+   box-shadow: 1px 3px 20px ${props => props.isOn ? 'rgba(0, 128, 0, 0.45)' : '#c25a5479'};
 
    &:hover {
       border: 1px solid #7b7979cf;
@@ -48,6 +48,10 @@ export const ShowSound = styled.div`
    border-radius: 10px; 
    box-shadow: 2px 2px 13px #454444cf;
 
+   h4 {
+      margin: 0 0 10px;
+   }
+
    &:hover {
       border: 1px solid #7b7979cf;
    }
@@ -63,14 +67,29 @@ export const Volume = styled.div`
    border-radius: 10px; 
    box-shadow: 2px 2px 13px #454444cf;
 
+   h3 {
+      margin-bottom: 0
+   }
+   p {
+      margin: 5px 
+   }
+
    &:hover {
       border: 1px solid #7b7979cf;
    }
 
-   button {
-      margin-right: 8px;
-      width: 30px;
-   }
+   input {
+      appearance: none;
+      border-radius: 10px;
+      padding: 1px;
+  }
+  input::-webkit-slider-thumb {
+   appearance: none;
+   height: 10px;
+   width: 10px;
+   background-color: blue;
+   border-radius: 50%;
+  }
 
 `;
 export const ChangeSound = styled.div`

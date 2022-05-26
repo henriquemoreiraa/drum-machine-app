@@ -3,12 +3,13 @@ import './App.css';
 import { useState } from 'react'
 import { Buttons } from './components/Buttons'
 import { AudioSettings } from './components/AudioSettings'  
-import { soundsOne, soundsTwo } from './soundsUrls'
-import { ShowSound } from './components/AudioSettings/styles';
+import { soundsOne, soundsTwo } from './data/soundsUrls'
 
 function App() {
   const [sounds, setSound] = useState(false) 
   const [volume, setVolume] = useState(1)
+  const [currentSound, setCurrentSound] = useState('')
+  const [isOn, setIsOn] = useState(true)
 
   const changeSounds = (e) => {
     setSound(e)
@@ -17,7 +18,15 @@ function App() {
   const changeVolume = (e) => {
     setVolume(e)
   }
-// console.log(sound)
+
+  const changeCurrentSound = (e) => {
+    setCurrentSound(e)
+  }
+
+  const changePower = (e) => {
+    setIsOn(e)
+    !isOn && setCurrentSound('')
+  }
 
   return (
     <C.Container>
@@ -28,22 +37,41 @@ function App() {
             key={sound.id}
             sound={sound}
             volume={volume}
+            isOn={isOn}
+            changeCurrentSound={changeCurrentSound}
           />
         )) : soundsTwo.map(sound => (
           <Buttons
             key={sound.id}
             sound={sound}
             volume={volume}
+            isOn={isOn}
+            changeCurrentSound={changeCurrentSound}
           />
         ))}
       </C.Button>  
 
-      <AudioSettings 
+      {!sounds && <AudioSettings 
         changeSounds={changeSounds}
         changeVolume={changeVolume}
+        changePower={changePower}
         sounds={sounds}
         volume={volume}
+        currentSound={currentSound}
+        isOn={isOn}
+        firstSounds={true}
+      /> }
+      { sounds && <AudioSettings 
+        changeSounds={changeSounds}
+        changeVolume={changeVolume}
+        changePower={changePower}
+        sounds={sounds}
+        volume={volume}
+        currentSound={currentSound}
+        isOn={isOn}
+        firstSounds={false}
       />
+      }
 
     </C.Container>
   );
