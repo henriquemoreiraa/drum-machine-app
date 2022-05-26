@@ -9,7 +9,9 @@ export const AudioSettings = () => {
         <C.AudioSettings>
            <C.Power>
                 <h3>Power</h3>
-                <Power stroke='#000'/>
+                <button>
+                    <Power stroke='#fff'/>
+                </button>
            </C.Power>
 
            <C.ShowSound>
@@ -18,14 +20,19 @@ export const AudioSettings = () => {
 
            <C.Volume>
                 <h3>Volume</h3>
-                <span>
-                    Down<VolumeDown stroke='#000'/> Up<VolumeUp stroke='#000'/>
-                </span>
+                
+                <div>
+                    <button> <VolumeDown stroke='#fff'/> </button>
+                    <button><VolumeUp stroke='#fff'/></button>
+                </div>
+                
             </C.Volume> 
 
            <C.ChangeSound>
                <h3>Bank</h3>
-               <Arrows stroke='#000'/>
+               <button>
+                   <Arrows stroke='#fff'/>
+               </button>
            </C.ChangeSound>
         </C.AudioSettings>
     )

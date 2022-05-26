@@ -19,6 +19,7 @@ export const Buttons = styled.div`
         color: #FFF;
         box-shadow: 2px 2px 13px #454444cf;
         font-weight: 700;
+        font-size: 1.10em;
 
         &:hover {
             opacity: 0.9;
