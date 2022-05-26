@@ -3,27 +3,48 @@ import './App.css';
 import { useState } from 'react'
 import { Buttons } from './components/Buttons'
 import { AudioSettings } from './components/AudioSettings'  
-import { bankOne, bankTwo } from './soundsUrls'
+import { soundsOne, soundsTwo } from './soundsUrls'
+import { ShowSound } from './components/AudioSettings/styles';
 
 function App() {
-  const [value, setValue] = useState(false) 
+  const [sounds, setSound] = useState(false) 
+  const [volume, setVolume] = useState(1)
 
-  const changeAlgo = (e) => {
-    setValue(e)
+  const changeSounds = (e) => {
+    setSound(e)
   }
-console.log(value)
+
+  const changeVolume = (e) => {
+    setVolume(e)
+  }
+// console.log(sound)
 
   return (
     <C.Container>
-      <Buttons 
-        id={bankOne.map(id => id.id)}
-        keyTrigger={bankOne.map(keyT => keyT.keyTrigger)}
-        keyCode={bankOne.map(keyC => keyC.keyCode)}
-        url={bankOne.map(url => url.url)}
-        changeAlgo={changeAlgo}
+
+      <C.Button>
+        {!sounds ? soundsOne.map(sound => (
+          <Buttons
+            key={sound.id}
+            sound={sound}
+            volume={volume}
+          />
+        )) : soundsTwo.map(sound => (
+          <Buttons
+            key={sound.id}
+            sound={sound}
+            volume={volume}
+          />
+        ))}
+      </C.Button>  
+
+      <AudioSettings 
+        changeSounds={changeSounds}
+        changeVolume={changeVolume}
+        sounds={sounds}
+        volume={volume}
       />
-      
-      <AudioSettings />
+
     </C.Container>
   );
 }

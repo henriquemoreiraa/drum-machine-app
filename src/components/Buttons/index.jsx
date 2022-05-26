@@ -1,45 +1,40 @@
 
-import { useRef, useState } from 'react'
+import { useState, useEffect } from 'react'
 import * as C from './styles'
 
-export const Buttons = (props) => {
-    const [isPlaying, setIsPlaying] = useState(false);
+export const Buttons = ({ sound, volume }) => {
 
-    const audioPlayer = useRef()
-
-    const togglePlaySound = () => {
-        const prevValue = isPlaying
-        setIsPlaying(!prevValue)
-        if (!prevValue) {
-            audioPlayer.current.play()
-            props.changeAlgo(true)
-        } else {
-            audioPlayer.current.pause()
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyPress);
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress)
         }
+    }, []);
+
+    const handleKeyPress = (e) => {
+        if (e.keyCode === sound.keyCode) {
+            playSound();
+        }
+    }
+
+    const playSound = () => {
+        const audioTag = document.getElementById(sound.keyTrigger);
+        audioTag.volume = volume
+        audioTag.currentTime = 0;
+        audioTag.play();
+
     }
 
     return (
         <C.Buttons>
-
-            <audio ref={audioPlayer} src={props.url[0]}></audio>
-            <audio src={props.url[1]}></audio>
-            <audio src={props.url[2]}></audio>
-            <audio src={props.url[3]}></audio>
-            <audio src={props.url[4]}></audio>
-            <audio src={props.url[5]}></audio>
-            <audio src={props.url[6]}></audio>
-            <audio src={props.url[7]}></audio>
-            <audio src={props.url[8]}></audio>
-
-            <button onClick={togglePlaySound}>Q</button>
-            <button>W</button>
-            <button>E</button>
-            <button>A</button>
-            <button>S</button>
-            <button>D</button>
-            <button>Z</button>
-            <button>X</button>
-            <button>C</button>
+            <div>
+                <button
+                    onClick={playSound}
+                >
+                    <audio src={sound.url} id={sound.keyTrigger} />
+                    {sound.keyTrigger}
+                </button>
+            </div>
         </C.Buttons>
     )
 }

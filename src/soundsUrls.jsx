@@ -1,4 +1,4 @@
-export const bankOne = [
+export const soundsOne = [
     {
       keyCode: 81,
       keyTrigger: 'Q',
@@ -55,7 +55,7 @@ export const bankOne = [
     }
   ];
 
-  export const bankTwo = [
+  export const soundsTwo = [
     {
       keyCode: 81,
       keyTrigger: 'Q',

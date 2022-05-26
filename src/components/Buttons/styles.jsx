@@ -1,15 +1,6 @@
 import styled from 'styled-components'
 // 020405 272D33
 export const Buttons = styled.div`
-    background-color: #272D33;
-    width: 350px;
-    padding: 10px 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    border-radius: 20px;
-    box-shadow: 0px -4px 11px rgba(0, 0, 0, 0.648);
-
     button {
         padding: 35px 45px;
         border: none;
