@@ -11,23 +11,6 @@ function App() {
   const [currentSound, setCurrentSound] = useState('')
   const [isOn, setIsOn] = useState(true)
 
-  const changeSounds = (e) => {
-    setSound(e)
-  }
-
-  const changeVolume = (e) => {
-    setVolume(e)
-  }
-
-  const changeCurrentSound = (e) => {
-    setCurrentSound(e)
-  }
-
-  const changePower = (e) => {
-    setIsOn(e)
-    !isOn && setCurrentSound('')
-  }
-
   return (
     <C.Container>
 
@@ -38,7 +21,7 @@ function App() {
             sound={sound}
             volume={volume}
             isOn={isOn}
-            changeCurrentSound={changeCurrentSound}
+            changeCurrentSound={(e) => setCurrentSound(e)}
           />
         )) : soundsTwo.map(sound => (
           <Buttons
@@ -46,15 +29,15 @@ function App() {
             sound={sound}
             volume={volume}
             isOn={isOn}
-            changeCurrentSound={changeCurrentSound}
+            changeCurrentSound={(e) => setCurrentSound(e)}
           />
         ))}
       </C.Button>  
 
       {!sounds && <AudioSettings 
-        changeSounds={changeSounds}
-        changeVolume={changeVolume}
-        changePower={changePower}
+        changeSounds={(e) => {return setSound(e), setCurrentSound('')}}
+        changeVolume={(e) => setVolume(e)}
+        changePower={(e) => {return setIsOn(e), !isOn && setCurrentSound('')}}
         sounds={sounds}
         volume={volume}
         currentSound={currentSound}
@@ -62,9 +45,9 @@ function App() {
         firstSounds={true}
       /> }
       { sounds && <AudioSettings 
-        changeSounds={changeSounds}
-        changeVolume={changeVolume}
-        changePower={changePower}
+        changeSounds={(e) => {return setSound(e), setCurrentSound('')}}
+        changeVolume={(e) => setVolume(e)}
+        changePower={(e) => {return setIsOn(e), !isOn && setCurrentSound('')}}
         sounds={sounds}
         volume={volume}
         currentSound={currentSound}
