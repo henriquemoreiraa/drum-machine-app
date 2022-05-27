@@ -1,4 +1,4 @@
-➕ Drum machine app
+🎹 Drum machine app
 =========================
 
 Drum machine app made for freeCodeCamp project, using React and Styled Components
